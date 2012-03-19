@@ -51,7 +51,7 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             name: '" . $this->getName() . "',
             xtype: 'combo',
             fieldLabel: '" . $this->getLabel() . "',
-            displayField: 'country',
+            displayField: '" . $this->getName() . "',
             valueField: 'id',
             store: " . $this->getStore() . ",
             queryMode: 'remote',
