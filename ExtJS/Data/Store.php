@@ -127,6 +127,10 @@ class ExtJS_Data_Store
             $content .= "autoLoad: true,\r\n";
         }
         
+        if ($this->getOption('remoteSort')) {
+            $content .= "remoteSort: true,";
+        }
+        
         $content .= "proxy: { \r\n";
         $content .= " type: '"
             . (isset($this->_options['proxy']['type']) ? $this->_options['proxy']['type'] : "ajax") . "', \r\n";
