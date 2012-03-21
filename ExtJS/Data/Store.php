@@ -131,6 +131,10 @@ class ExtJS_Data_Store
             $content .= "remoteSort: true,";
         }
         
+        if ($this->getOption('remoteFilter')) {
+            $content .= "remoteFilter: true,";
+        }
+        
         $content .= "proxy: { \r\n";
         $content .= " type: '"
             . (isset($this->_options['proxy']['type']) ? $this->_options['proxy']['type'] : "ajax") . "', \r\n";
