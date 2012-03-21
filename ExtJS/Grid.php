@@ -299,7 +299,7 @@ class ExtJS_Grid
         }
         
         if ($this->hasTopBar()) {
-            $content .= "dockedItems: [" . $this->getTopBar() . "],";
+            $content .= "tbar: [" . $this->getTopBar() . "],";
         }
                    
         $content .= "

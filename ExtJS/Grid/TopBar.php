@@ -47,12 +47,11 @@ class ExtJS_Grid_TopBar
      */
     public function render()
     {
-        $content = "{
-            xtype: 'toolbar',
-            dock: 'top',";
-            
-        $content .= "items: [";
+        $content = "";
         foreach ($this->getItems() as $item) {
+            $content .= $item->render() . ",";
+            
+            /*
             $content .= "{
                 text: '" . $item['text'] . "',
                 toolbar: '" . $item['tooltip'] . "',
@@ -63,8 +62,9 @@ class ExtJS_Grid_TopBar
             }
             
             $content .= "}, '-',";
+            */
         }
-        $content .= "]}";
+        // $content .= "]}";
         
         return $content;
     }
