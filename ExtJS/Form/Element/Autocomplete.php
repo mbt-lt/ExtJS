@@ -51,7 +51,7 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             name: '" . $this->getName() . "',
             xtype: 'combo',
             fieldLabel: '" . $this->getLabel() . "',
-            displayField: '" . $this->getName() . "',
+            displayField: '" . $this->getDisplayField() . "',
             valueField: 'id',
             store: " . $this->getStore() . ",
             queryMode: 'remote',
@@ -61,5 +61,16 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             typeAhead: true
         }";
         return $content;
+    }
+    
+    /**
+     * returns display field
+     *
+     * @return string
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function getDisplayField()
+    {
+        return $this->getAttrib('displayField') ? $this->getAttrib('displayField') : $this->getName();
     }
 }
