@@ -16,6 +16,17 @@ abstract class ExtJS_Element_Abstract implements ExtJS_Element_Interface
     protected $_options = array();
     
     /**
+     * constructs object
+     *
+     * @param array $options 
+     * @author aur1mas
+     */
+    public function __construct(array $options = array())
+    {
+        $this->_options = $options;
+    }
+    
+    /**
      * set options
      *
      * @param array $options 

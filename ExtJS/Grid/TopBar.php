@@ -5,7 +5,7 @@
  * @package ExtJS
  * @author aur1mas <aur1mas@devnet.lt>
  */
-class ExtJS_Grid_TopBar
+class ExtJS_Grid_TopBar extends ExtJS_Element_Abstract
 {
     
     /**
@@ -47,21 +47,14 @@ class ExtJS_Grid_TopBar
      */
     public function render()
     {
-        $content = "";
+        $content = "{
+            xtype: 'toolbar',
+            items: [";
         foreach ($this->getItems() as $item) {
             $content .= $item->render() . ",";
         }
+        $content .= "]}";
         
         return $content;
-    }
-    
-    /**
-     * @see this#render
-     * @return void
-     * @author aur1mas
-     */
-    public function __toString()
-    {
-        return $this->render();
     }
 }

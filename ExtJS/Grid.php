@@ -251,7 +251,7 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
         }
         
         if ($this->hasTopBar()) {
-            $content .= "tbar: [" . $this->getTopBar() . "],";
+            $content .= "tbar: " . $this->getTopBar() . ",";
         }
         
         if ($this->getOption('width')) {
