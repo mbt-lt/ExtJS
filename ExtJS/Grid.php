@@ -5,7 +5,7 @@
  * @package ExtJS
  * @author aur1mas <aur1mas@devnet.lt>
  */
-class ExtJS_Grid
+class ExtJS_Grid extends ExtJS_Element_Abstract
 {
     
     /**
@@ -21,13 +21,6 @@ class ExtJS_Grid
      * @var string
      */
     protected $_columns;
-    
-    /**
-     * grid options
-     *
-     * @var array
-     */
-    protected $_options = array();
     
     /**
      * paging toolbar
@@ -169,47 +162,6 @@ class ExtJS_Grid
     }
     
     /**
-     * set Grid options
-     *
-     * @param array $options 
-     * @return ExtJS_Grid
-     * @author aur1mas <aur1mas@devnet.lt>
-     */
-    public function setOptions(array $options = array())
-    {
-        $this->_options = $options;
-        return $this;
-    }
-    
-    /**
-     * checks if option is present
-     *
-     * @param string $key 
-     * @return boolean
-     * @author aur1mas <aur1mas@devnet.lt>
-     */
-    public function hasOption($key)
-    {
-        return isset($this->_options[$key]);
-    }
-    
-    /**
-     * get grid option
-     *
-     * @param string $key 
-     * @return string
-     * @author aur1mas <aur1mas@devnet.lt>
-     */
-    public function getOption($key)
-    {
-        if ($this->hasOption($key)) {
-            return $this->_options[$key];
-        }
-        
-        return null;
-    }
-    
-    /**
      * ExtJS data store
      *
      * @param mixed <ExtJS_Data_Store|string> $store    store can be object or just store id if it's already created
@@ -301,11 +253,14 @@ class ExtJS_Grid
         if ($this->hasTopBar()) {
             $content .= "tbar: [" . $this->getTopBar() . "],";
         }
+        
+        if ($this->getOption('width')) {
+            $content .= "width: " . $this->getOption('width') . ",";
+        }
                    
         $content .= "
             renderTo: '" . $this->getOption('renderTo') . "',
             id: '" . $this->getOption('renderTo') . "',
-            width: " . $this->getOption('width') . ",
             forceFit: true
         })";
         

@@ -50,21 +50,7 @@ class ExtJS_Grid_TopBar
         $content = "";
         foreach ($this->getItems() as $item) {
             $content .= $item->render() . ",";
-            
-            /*
-            $content .= "{
-                text: '" . $item['text'] . "',
-                toolbar: '" . $item['tooltip'] . "',
-                iconCls: '" . $item['iconCls'] . "'";
-            
-            if (isset($item['disabled']) && $item['disabled'] === true) {
-                $content .= ", disabled: true";
-            }
-            
-            $content .= "}, '-',";
-            */
         }
-        // $content .= "]}";
         
         return $content;
     }
