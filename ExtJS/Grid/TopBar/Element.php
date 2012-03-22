@@ -20,6 +20,10 @@ class ExtJS_Grid_TopBar_Element extends ExtJS_Element_Abstract
             $content .= ", disabled: true";
         }
         
+        if ($this->hasOption('handler')) {
+            $content .= ", handler: " . $this->getOption('handler');
+        }
+        
         $content .= "}";
         
         
