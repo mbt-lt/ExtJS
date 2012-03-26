@@ -20,9 +20,9 @@ class ExtJS_Form_Element_Radio extends Zend_Form_Element_Radio
         $content .= "items: [";    
         foreach ($this->getMultiOptions() as $key => $value) {
             $content .= "{
-                boxLabel: '" . $key . "',
+                boxLabel: '" . $value . "',
                 name: '" . $this->getName() . "',
-                inputValue: '" . $value ."'
+                inputValue: '" . $key ."'
             },";
         }
         $content .= "]}";
