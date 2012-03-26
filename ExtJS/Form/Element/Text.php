@@ -21,7 +21,8 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
             name: '" . $this->getName() . "',
             inputType: '" . $this->getName() . "',
             id: '" . $this->getName() ."',
-            xtype: 'textfield'";
+            xtype: 'textfield',
+            value: '" . $this->getValue() . "'";
          
          if ($this->getAttrib('validator')) {
              $content .= ", validator: " . $this->getAttrib('validator');

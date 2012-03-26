@@ -20,7 +20,8 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
             xtype: 'datefield',
             fieldLabel: '" . $this->getLabel() . "',
             name: '" . $this->getName() . "',
-            format: '" . $this->getFormat() . "'
+            format: '" . $this->getFormat() . "',
+            value: '" . $this->getValue() . "'
         }";
         
         return $content;

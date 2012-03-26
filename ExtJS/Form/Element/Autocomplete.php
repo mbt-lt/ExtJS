@@ -58,7 +58,8 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             minChars: 2,
             hasTrigger: true,
             forceSelection: true,
-            typeAhead: true
+            typeAhead: true,
+            value: '" . $this->getValue() . "'
         }";
         return $content;
     }
