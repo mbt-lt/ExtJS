@@ -9,20 +9,12 @@ require_once 'ExtJS/Element/Abstract.php';
 class ExtJS_TabPanel_Element extends ExtjS_Element_Abstract
 {    
     
-    protected $_title;
-    
     /**
-     * set title
+     * element listeners
      *
-     * @param string $title 
-     * @return ExtJS_TabPanel_Element
-     * @author aur1mas <aur1mas@devnet.lt>
+     * @var array
      */
-    public function setTitle($title)
-    {
-        $this->_title = (string)$title;
-        return $this;
-    }
+    protected $_listeners = array();
     
     /**
      * get tab title
@@ -32,7 +24,7 @@ class ExtJS_TabPanel_Element extends ExtjS_Element_Abstract
      */
     public function getTitle()
     {
-        return $this->_title;
+        return $this->hasOption('title') ? $this->getOption('title') : null;
     }
     
     /**

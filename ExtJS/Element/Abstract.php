@@ -68,6 +68,20 @@ abstract class ExtJS_Element_Abstract implements ExtJS_Element_Interface
         
         return null;
     }
+    
+    /**
+     * sets option
+     *
+     * @param string $key 
+     * @param string $value 
+     * @return ExtJS_Element_Abstract
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function setOption($key, $value)
+    {
+        $this->_options[$key] = $value;
+        return $this;
+    }
 
     
     /**

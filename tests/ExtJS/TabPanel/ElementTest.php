@@ -43,7 +43,10 @@ class ExtJS_TabPanel_ElementTest extends PHPUnit_Framework_TestCase
         $title = 'test title';
         
         $element = $this->_getElement();
-        $element->setTitle($title);
+        
+        $this->assertSame(null, $element->getTitle());
+        
+        $element->setOption('title', $title);
         
         $this->assertSame($title, $element->getTitle());
     }
