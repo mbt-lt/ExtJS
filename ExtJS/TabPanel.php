@@ -85,25 +85,8 @@ class ExtJS_TabPanel extends ExtJS_Element_Abstract
         }
         
         $content .= "items: [";
-        
-        /**
-         * @todo create ExtJS_TabPanel_Item
-         */
         foreach ($this->getItems() as $item) {
-            $content .= "{";
-            $content .= "title: '" . $item['title'] . "',";
-            $content .= "loader: {";
-            $content .= "url: '" . $item['loader']['url'] . "',";
-            $content .= "contentType: 'html',
-                scripts: true,
-                loadMask: true";
-            $content .= "},
-            listeners: {
-                               activate: function(tab) {
-                                   tab.loader.load();
-                               }
-                           }
-            },";
+            $content .= $item->render() . ",";
         }
         $content .="] });";
 
