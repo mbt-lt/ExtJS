@@ -5,6 +5,8 @@
  * @package ExtJS
  * @author aur1mas <aur1mas@devnet.lt>
  */
+ 
+require_once 'ExtJS/Element/Interface.php';
 abstract class ExtJS_Element_Abstract implements ExtJS_Element_Interface
 {
     
