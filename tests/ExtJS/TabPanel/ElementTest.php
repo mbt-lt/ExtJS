@@ -71,4 +71,18 @@ class ExtJS_TabPanel_ElementTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($element->hasListeners());
         $this->assertCount(1, $element->getListeners());
     }
+        
+    /**
+     * tests can set listeners to object through its constructor
+     *
+     * @return void
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function testCanAddListenersThroughConstructor()
+    {
+        $element = new ExtJS_TabPanel_Element(array('listeners' => array("function() {}")));
+            
+        $this->assertTrue($element->hasListeners());
+        $this->assertCount(1, $element->getListeners());
+    }
 }

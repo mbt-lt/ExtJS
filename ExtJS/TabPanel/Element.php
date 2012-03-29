@@ -17,6 +17,22 @@ class ExtJS_TabPanel_Element extends ExtjS_Element_Abstract
     protected $_listeners = array();
     
     /**
+     * object constructor
+     *
+     * @param array $options 
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function __construct(array $options = array())
+    {
+        if (isset($options['listeners']) && is_array($options['listeners'])) {
+            $this->setListeners($options['listeners']);
+            unset($options['listeners']);
+        }
+        
+        parent::__construct($options);
+    }
+    
+    /**
      * get tab title
      *
      * @return string
@@ -77,8 +93,13 @@ class ExtJS_TabPanel_Element extends ExtjS_Element_Abstract
             url: '" . $this->getOption('url') . "',
             contentType: 'html',
             scripts: true,
-            loadMask: true
-        },";
+            loadMask: true";
+
+        if ($this->hasOption('autoLoad')) {
+            $content .= ", autoLoad: " . $this->getOption('autoLoad') . ",";
+        }
+        
+        $content .= "},";
         
         
         if ($this->hasListeners()) {
