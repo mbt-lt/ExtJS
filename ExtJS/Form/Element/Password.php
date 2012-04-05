@@ -19,7 +19,7 @@ class ExtJS_Form_Element_Password extends Zend_Form_Element_Password
         $content .= "{
             fieldLabel: '" . $this->getLabel() ."',
             name: '" . $this->getName() . "',
-            inputType: '" . $this->getName() . "',
+            inputType: 'password',
             xtype: 'textfield'";
          
          if ($this->getAttrib('validator')) {
