@@ -1,6 +1,9 @@
 <phpunit bootstrap="./bootstrap.php" colors="true">
 	<testsuite name="ExtJS PHP Wrapper Tests">
 		<directory>./ExtJS</directory>
+		<exclude>
+		    <directory suffix=".php">/Users</directory>
+        </exclude>
 	</testsuite>
 	<logging>
 		<log type="coverage-html" target="./log/report" charset="UTF-8" yui="true" highlight="true"

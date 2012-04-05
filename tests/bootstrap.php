@@ -1,5 +1,4 @@
 <?php
-
 define('ZF_PATH', '/Users/user/Sites/htdocs/Zend/'); // define Zend Framework path
 
 if (realpath(ZF_PATH) === false) {
