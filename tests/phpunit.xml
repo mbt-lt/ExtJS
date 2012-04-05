@@ -2,7 +2,7 @@
 	<testsuite name="ExtJS PHP Wrapper Tests">
 		<directory>./ExtJS</directory>
 		<exclude>
-		    <directory suffix=".php">/Users</directory>
+		    <directory suffix=".php">../../lib/</directory>
         </exclude>
 	</testsuite>
 	<logging>

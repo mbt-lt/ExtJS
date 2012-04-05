@@ -31,7 +31,11 @@ class ExtJS_Form extends Zend_Form
         }
         
         if ($this->getAttrib('width')) {
-            $content .= "width: " . $this->getAttrib('width') . ",";
+            $content .= "width: " . (int)$this->getAttrib('width') . ",";
+        }
+        
+        if ($this->getAttrib('height')) {
+            $content .= "height: " . (int)$this->getAttrib('height') . ",";
         }
         
         // decide where to render content

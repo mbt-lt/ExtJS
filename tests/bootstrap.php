@@ -1,5 +1,5 @@
 <?php
-define('ZF_PATH', '/Users/user/Sites/htdocs/Zend/'); // define Zend Framework path
+define('ZF_PATH', '../../lib/'); // define Zend Framework path
 
 if (realpath(ZF_PATH) === false) {
     throw new Exception("Zend Framework library not found. Wrong path specified");
