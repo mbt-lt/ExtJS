@@ -33,4 +33,24 @@ class ExtJS_Form_Element_PasswordTest extends PHPUnit_Framework_TestCase
             xtype: 'textfield'}";
         $this->assertSame($content2, $elmement2->render());
     }
+    
+    /**
+     * tests wether initialPassword field can be set
+     *
+     * @return void
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function testCanSetIntialField()
+    {
+        $element = new ExtJS_Form_Element_Password('password');
+        $element->setAttrib('initialPassField', 'field');
+        
+        $content = "{
+            fieldLabel: '',
+            name: 'password',
+            inputType: 'password',
+            xtype: 'textfield', initialPassField: 'field'}";
+
+        $this->assertSame($content, $element->render());
+    }
 }

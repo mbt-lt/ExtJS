@@ -21,6 +21,10 @@ class ExtJS_Form_Element_Password extends Zend_Form_Element_Password
             name: '" . $this->getName() . "',
             inputType: 'password',
             xtype: 'textfield'";
+            
+        if ($this->getAttrib('initialPassField')) {
+            $content .= ", initialPassField: '" . $this->getAttrib('initialPassField') . "'";
+        }
          
          if ($this->getAttrib('validator')) {
              $content .= ", validator: " . $this->getAttrib('validator');
