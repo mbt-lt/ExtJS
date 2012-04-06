@@ -16,48 +16,40 @@ class ExtJS_Form extends Zend_Form
      */
     public function render()
     {
-        $content = 'Ext.create("Ext.form.Panel", {';
-            
-        if ($this->getAttrib('id')) {
-            $content .= "id: '" . $this->getAttrib('id') . "',";
-        }
+        $content = "Ext.create('Ext.form.Panel', {";
         
-        if ($this->getAttrib('title')) {
-            $content .= "title: '" . $this->getAttrib('title') . "',";
-        }
+        $content .= "frame: true";
         
         if ($this->getAction()) {
-            $content .= "url: '" . $this->getAction() . "',";
+            $content .= ", url: '" . $this->getAction() . "'";
         }
         
-        if ($this->getAttrib('width')) {
-            $content .= "width: " . (int)$this->getAttrib('width') . ",";
+        foreach ($this->getAttribs() as $name => $value) {
+            $content .= ", ";
+            
+            switch ($name) {
+                case 'renderTo':
+                    $content .= "renderTo: Ext.get('" . (string)$value . "')";
+                    break;
+                case 'height':
+                case 'width':
+                    $content .= $name . ": " . (int)$value;
+                    break;
+                case 'standardSubmit':
+                case 'hidden':
+                    $content .= $name . ": " . ((boolean)$value === true ? 'true' : 'false');
+                    break;
+                default:
+                    $content .= $name . ": '" . (string)$value . "'";
+                    break;
+            }
         }
         
-        if ($this->getAttrib('height')) {
-            $content .= "height: " . (int)$this->getAttrib('height') . ",";
+        if (!$this->getAttrib('renderTo')) {
+            $content .= ", renderTo: Ext.getBody()";
         }
         
-        // decide where to render content
-        $content .= "renderTo: ";
-        if ($this->getAttrib('renderTo')) {
-            $content .= "Ext.get('" . $this->getAttrib('renderTo') . "')";
-        } else {
-            $content .= "Ext.getBody()";
-        }
-        $content .= ",";
-        
-        if ($this->getAttrib('standardSubmit') && $this->getAttrib('standardSubmit') === true) {
-            $content .= "standardSubmit: true,";
-        }
-        
-        if ($this->getAttrib('reader')) {
-            $content .= "reader: " . $this->getAttrib('reader') . ",";
-        }
-        
-        $content .= "frame: true,";
-        
-        $content .= "items: [";
+        $content .= ", items: [";
         foreach ($this->getElements() as $element) {
             $content .= $element->render() . ",";
         }

@@ -19,7 +19,22 @@ class ExtJS_FormTest extends PHPUnit_Framework_TestCase
     {
         $form = new ExtJS_Form();
         $form->setAttrib('height', 200);
-        $content = 'Ext.create("Ext.form.Panel", {height: 200,renderTo: Ext.getBody(),frame: true,items: [],buttons: []});';
+        $content = "Ext.create('Ext.form.Panel', {frame: true, height: 200, action: '', renderTo: Ext.getBody(), items: [],buttons: []});";
+        $this->assertSame($content, $form->render());
+    }
+    
+    /**
+     * issue #6 (https://github.com/mbt-lt/ExtJS/issues/6)
+     *
+     * @return void
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function testCansetHidden()
+    {
+        $form = new ExtJS_Form();
+        $form->setAttrib('hidden', true);
+        $content = "Ext.create('Ext.form.Panel', {frame: true, hidden: true, action: '', renderTo: Ext.getBody(), items: [],buttons: []});";
+        
         $this->assertSame($content, $form->render());
     }
 }
