@@ -39,6 +39,16 @@ class ExtJS_Form extends Zend_Form
                 case 'hidden':
                     $content .= $name . ": " . ((boolean)$value === true ? 'true' : 'false');
                     break;
+                case 'onEnter':
+                    $content .= "listeners: {
+                        afterRender: function(form, options){
+                            this.keyNav = Ext.create('Ext.util.KeyNav', this.el, {
+                                enter: function() {" . $value . "},
+                                scope: this
+                            });
+                         }
+                    },";
+                    break;
                 default:
                     $content .= $name . ": '" . (string)$value . "'";
                     break;
