@@ -47,7 +47,7 @@ class ExtJS_Form extends Zend_Form
                                 scope: this
                             });
                          }
-                    },";
+                    }";
                     break;
                 default:
                     $content .= $name . ": '" . (string)$value . "'";
