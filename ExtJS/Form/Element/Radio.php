@@ -23,8 +23,13 @@ class ExtJS_Form_Element_Radio extends Zend_Form_Element_Radio
                 boxLabel: '" . $value . "',
                 name: '" . $this->getName() . "',
                 inputValue: '" . $key ."',
-                checked: '" . ($key === $this->getValue() ? true : false) . "'
-            },";
+                checked: '" . ($key === $this->getValue() ? true : false) . "'";
+                
+            if ($this->getAttrib('handler')) {
+                $content .= ", handler: " . $this->getAttrib('handler') . ",";
+            }
+
+            $content .= "},";
         }
         $content .= "]}";
         
