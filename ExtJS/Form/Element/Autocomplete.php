@@ -59,8 +59,14 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             hasTrigger: true,
             forceSelection: true,
             typeAhead: true,
-            value: '" . $this->getValue() . "'
-        }";
+            value: '" . $this->getValue() . "'";
+        
+        if ($this->getAttrib('disabled') && $this->getAttrib('disabled') === true) {
+            $content .= ", disabled: true";
+        }
+        
+        $content .= "}";
+        
         return $content;
     }
     
