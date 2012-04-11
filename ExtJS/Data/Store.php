@@ -108,8 +108,12 @@ class ExtJS_Data_Store extends ExtJS_Element_Abstract
             $content .= "} \r\n";
         } else if ($this->hasOption('data')) {
             $content .= "data: [";
-            foreach ($this->getOption('data') as $key => $value) {
-                $content .= "{" . (string)$key . ": '" . (string)$value . "'}";
+            foreach ($this->getOption('data') as $row) {
+                $content .= "{";
+                foreach ($row as $key => $value) {
+                    $content .= (string)$key . ": '" . (string)$value . "', ";
+                }
+                $content .= "},";
             }
             $content .= "]";
         } else {
