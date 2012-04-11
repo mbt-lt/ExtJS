@@ -5,15 +5,8 @@
  * @package ExtJS
  * @author aur1mas <aur1mas@devnet.lt>
  */
-class ExtJS_Data_Store
+class ExtJS_Data_Store extends ExtJS_Element_Abstract
 {
-    
-    /**
-     * store options
-     *
-     * @var array
-     */
-    protected $_options = array();
     
     /**
      * store fields
@@ -21,35 +14,6 @@ class ExtJS_Data_Store
      * @var array
      */
     protected $_fields = array();
-    
-    /**
-     * set Grid options
-     *
-     * @param array $options 
-     * @return ExtJS_Grid
-     * @author aur1mas <aur1mas@devnet.lt>
-     */
-    public function setOptions(array $options = array())
-    {
-        $this->_options = $options;
-        return $this;
-    }
-    
-    /**
-     * get grid option
-     *
-     * @param string $key 
-     * @return string
-     * @author aur1mas <aur1mas@devnet.lt>
-     */
-    public function getOption($key)
-    {
-        if (isset($this->_options[$key])) {
-            return $this->_options[$key];
-        }
-        
-        return null;
-    }
     
     /**
      * store fields
@@ -135,25 +99,25 @@ class ExtJS_Data_Store
             $content .= "remoteFilter: true,";
         }
         
-        $content .= "proxy: { \r\n";
-        $content .= " type: '"
-            . (isset($this->_options['proxy']['type']) ? $this->_options['proxy']['type'] : "ajax") . "', \r\n";
-        $content .= " url: '" . $this->_options['proxy']['url'] . "', \r\n";
-        $content .= " reader: { type: 'json', root: 'result' } \r\n";
-        $content .= "} \r\n";
+        if ($this->hasOption('proxy')) {
+            $content .= "proxy: { \r\n";
+            $content .= " type: '"
+                . (isset($this->_options['proxy']['type']) ? $this->_options['proxy']['type'] : "ajax") . "', \r\n";
+            $content .= " url: '" . $this->_options['proxy']['url'] . "', \r\n";
+            $content .= " reader: { type: 'json', root: 'result' } \r\n";
+            $content .= "} \r\n";
+        } else if ($this->hasOption('data')) {
+            $content .= "data: [";
+            foreach ($this->getOption('data') as $key => $value) {
+                $content .= "{" . (string)$key . ": '" . (string)$value . "'}";
+            }
+            $content .= "]";
+        } else {
+            throw new ExtJS_Exception("Wrong data type");
+        }
         
         $content .= "}) \r\n";
         
         return $content;
-    }
-    
-    /**
-     * @see this#render
-     * @return void
-     * @author aur1mas
-     */
-    public function __toString()
-    {
-        return $this->render();
     }
 }
