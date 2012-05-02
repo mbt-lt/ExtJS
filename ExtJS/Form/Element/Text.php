@@ -19,7 +19,6 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
         $content = "{
             fieldLabel: '" . $this->getLabel() ."',
             name: '" . $this->getName() . "',
-            inputType: '" . $this->getName() . "',
             id: '" . $this->getName() ."',
             xtype: 'textfield',
             value: '" . $this->getValue() . "'";
