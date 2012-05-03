@@ -7,6 +7,20 @@
  */
 class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
 {
+
+    /**
+     * Prefix for field id to avoid duplication
+     */
+    protected $_idPrefix = '';
+
+    public function __construct($spec, $options = array())
+    {
+        if ($options['idPrefix']) {
+            $this->_idPrefix = $options['idPrefix'];
+            unset($options['idPrefix']);
+        }
+        parent::__construct($spec, $options);
+    }
     
     /**
      * renders ExtJS form element
@@ -19,7 +33,7 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
         $content = "{
             fieldLabel: '" . $this->getLabel() ."',
             name: '" . $this->getName() . "',
-            id: '" . $this->getName() ."',
+            id: '" . $this->_idPrefix . $this->getName() ."',
             xtype: 'textfield',
             value: '" . $this->getValue() . "'";
          
