@@ -22,7 +22,13 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
             name: '" . $this->getName() . "',
             format: '" . $this->getFormat() . "',
             value: '" . $this->getValue() . "'
-        }";
+        ";
+        
+        if ($this->isRequired()) {
+            $content .= ", allowBlank: false";
+        }
+        
+        $content .= "}";
         
         return $content;
     }

@@ -263,10 +263,12 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
                 itemdblclick: ".$this->getOption('onItemDblClick')."
             },";
         }
+        
+        $id = $this->getOption('id');
                    
         $content .= "
             renderTo: '" . $this->getOption('renderTo') . "',
-            id: '" . $this->getOption('renderTo') . "',
+            id: '" . ($id ? $id : $this->getOption('renderTo')) . "',
             forceFit: true
         })";
         
