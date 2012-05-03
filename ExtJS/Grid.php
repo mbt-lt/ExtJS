@@ -257,6 +257,12 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
         if ($this->getOption('width')) {
             $content .= "width: " . $this->getOption('width') . ",";
         }
+        
+        if ($this->hasOption('onItemDblClick')) {
+            $content .= "listeners: {
+                itemdblclick: ".$this->getOption('onItemDblClick')."
+            },";
+        }
                    
         $content .= "
             renderTo: '" . $this->getOption('renderTo') . "',

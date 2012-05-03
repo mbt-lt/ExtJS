@@ -16,7 +16,7 @@ class ExtJS_Form_Element_Hidden extends Zend_Form_Element_Hidden
      */
     public function render()
     {
-        $content .= "{
+        $content = "{
             name: '" . $this->getName() . "',
             id: '" . $this->getName() ."',
             xtype: 'hiddenfield',
