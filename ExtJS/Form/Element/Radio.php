@@ -12,10 +12,14 @@ class ExtJS_Form_Element_Radio extends Zend_Form_Element_Radio
     {
         $content = "{";
         $content .= "
-            xtype: 'fieldcontainer',
-            defaultType: 'radiofield',
+            xtype: 'radiogroup',
             layout: 'hbox',
+            width: 255,
             fieldLabel: '" . $this->getLabel() . "',";
+        
+        if ($this->isRequired()) {
+            $content .= "allowBlank: false,";
+        }
         
         $content .= "items: [";    
         foreach ($this->getMultiOptions() as $key => $value) {
