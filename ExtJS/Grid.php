@@ -264,6 +264,10 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
             },";
         }
         
+        if ($this->hasOption('viewConfig')) {
+            $content .= "viewConfig: " . $this->getOption('viewConfig') . ',';
+        }
+        
         $id = $this->getOption('id');
                    
         $content .= "
