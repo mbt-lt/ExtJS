@@ -15,7 +15,7 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
 
     public function __construct($spec, $options = array())
     {
-        if ($options['idPrefix']) {
+        if (isset($options['idPrefix'])) {
             $this->_idPrefix = $options['idPrefix'];
             unset($options['idPrefix']);
         }
