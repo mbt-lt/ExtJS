@@ -49,6 +49,9 @@ class ExtJS_Form extends Zend_Form
                          }
                     }";
                     break;
+                case 'defaults':
+                    $content .= "defaults: " . (string)$value;
+                    break;
                 default:
                     $content .= $name . ": '" . (string)$value . "'";
                     break;
@@ -61,12 +64,28 @@ class ExtJS_Form extends Zend_Form
         
         $content .= ", items: [";
         
-        $iterator = new ArrayIterator($this->getElements());
-        while ($iterator->valid()) {
-            $element = $iterator.current();
-            $content .= $element->render();
-            if ($iterator->valid()) {
-                $content .= ",";
+        if ($this->hasSubForms()) {
+            $iterator = new ArrayIterator($this->getSubForms());
+            while($iterator->valid()) {
+                $
+            }
+            foreach ($this->getSubForms() as $subForm) {
+                $content .= "{";
+                if ($subForm->getAttrib('width')) {
+                    $content .= "width: " . (int)$subForm->getAttrib('wdith') . ",";
+                }
+                $content .= $subForm->render() . "},";
+            }
+        }
+        
+        if ($this->hasElements()) {
+            $iterator = new ArrayIterator($this->getElements());
+            while ($iterator->valid()) {
+                $element = $iterator->current();
+                $content .= $element->render();
+                if ($iterator->valid()) {
+                    $content .= ",";
+                }
             }
         }
 
@@ -76,7 +95,7 @@ class ExtJS_Form extends Zend_Form
         
         $iterator = new ArrayIterator($this->getButtons());
         while ($iterator->valid()) {
-            $button = $iterator.current();
+            $button = $iterator->current();
             
             $content .= "{ text: '" . $button->getLabel() . "'";
             $content .= ",itemId: '" . $button->getName() . "'";
@@ -99,7 +118,7 @@ class ExtJS_Form extends Zend_Form
             
             $content .= "}";
             
-            $iterator.next();
+            $iterator->next();
             
             if ($iterator->valid()) {
                 $content .= ",";
@@ -152,5 +171,27 @@ class ExtJS_Form extends Zend_Form
         }
         
         return $buttons;
+    }
+    
+    /**
+     * check if form has subforms
+     *
+     * @return boolean
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function hasSubForms()
+    {
+        return count($this->getSubForms()) > 0;
+    }
+    
+    /**
+     * checks if form has elements
+     *
+     * @return boolean
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function hasElements()
+    {
+        return count($this->getElements()) > 0;
     }
 }
