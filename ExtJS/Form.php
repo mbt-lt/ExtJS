@@ -67,19 +67,23 @@ class ExtJS_Form extends Zend_Form
         
         $content .= "buttons: [";
         foreach ($this->getButtons() as $button) {
-            $content .= "{ text: '" . $button->getLabel() . "',";
-            $content .= "itemId: '" . $button->getName() . "',";
+            $content .= "{ text: '" . $button->getLabel() . "'";
+            $content .= ",itemId: '" . $button->getName() . "'";
               
             if ($button->getAttrib('bind')) {
-                $content .= "formBind: " . $button->getAttrib('bind') . ",";
+                $content .= ",formBind: " . $button->getAttrib('bind');
             }
             
             if ($button->getAttrib('disabled') && $button->getAttrib('disabled') === true) {
-                $content .= "disabled: true, ";
+                $content .= ",disabled: true";
             }
             
             if ($button->getAttrib('handler')) {
-                $content .= "handler: " . $button->getAttrib('handler');
+                $content .= ",handler: " . $button->getAttrib('handler');
+            }
+            
+            if ($button->getAttrib('hidden') && $button->getAttrib('hidden') === true) {
+                $content .= ",hidden: true";
             }
             
             $content .= "},";
