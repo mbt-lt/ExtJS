@@ -44,9 +44,10 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
                 click: {
                     fn: function() {
                         Ext.Ajax.request({
-                            url: 'http://beta.mbt.lt',
+                            url: '" . $this->getAttrib('url') . "',
                             success: function(response) {
-                                Ext.getCmp('" . $this->_idPrefix . $this->getName() . "').setValue(result.license_number);
+                                var result = Ext.JSON.decode(response.responseText);
+                                Ext.getCmp('" . $this->_idPrefix . $this->getName() . "').setValue(result.value);
                             }
                         });
                     }
