@@ -61,42 +61,52 @@ class ExtJS_Form extends Zend_Form
         
         $content .= ", items: [";
         
-        $elements = $this->getElements();
-        
-        $i = 0;
-        foreach ($this->getElements() as $element) {
+        $iterator = new ArrayIterator($this->getElements());
+        while ($iterator->valid()) {
+            $element = $iterator.current();
             $content .= $element->render();
-            if($i < count($this->getElements())-1)
+            if ($iterator->valid()) {
                 $content .= ",";
-            $i++;
+            }
         }
-        
+
         $content .= "],";
         
-        $i = 0;
         $content .= "buttons: [";
-        foreach ($this->getButtons() as $key => $button) {
-            $content .= "{ text: '" . $button->getLabel() . "',";
-            $content .= "itemId: '" . $button->getName() . "',";
+        
+        $iterator = new ArrayIterator($this->getButtons());
+        while ($iterator->valid()) {
+            $button = $iterator.current();
+            
+            $content .= "{ text: '" . $button->getLabel() . "'";
+            $content .= ",itemId: '" . $button->getName() . "'";
               
             if ($button->getAttrib('bind')) {
-                $content .= "formBind: " . $button->getAttrib('bind') . ",";
+                $content .= ",formBind: " . $button->getAttrib('bind');
             }
             
             if ($button->getAttrib('disabled') && $button->getAttrib('disabled') === true) {
-                $content .= "disabled: true, ";
+                $content .= ",disabled: true";
             }
             
             if ($button->getAttrib('handler')) {
-                $content .= "handler: " . $button->getAttrib('handler');
+                $content .= ",handler: " . $button->getAttrib('handler');
+            }
+            
+            if ($button->getAttrib('hidden') && $button->getAttrib('hidden') === true) {
+                $content .= ",hidden: true";
             }
             
             $content .= "}";
-            if($i < count($this->getButtons())-1)
-                $content .= ",";
             
-            $i++;
+            $iterator.next();
+            
+            if ($iterator->valid()) {
+                $content .= ",";
+            }
+            
         }
+        
         $content .= "]";
             
         $content .= '});';
