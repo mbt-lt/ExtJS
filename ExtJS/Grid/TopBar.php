@@ -50,9 +50,19 @@ class ExtJS_Grid_TopBar extends ExtJS_Element_Abstract
         $content = "{
             xtype: 'toolbar',
             items: [";
-        foreach ($this->getItems() as $item) {
-            $content .= $item->render() . ",";
-        }
+        
+        $iterator = new ArrayIterator($this->getItems());
+        while ($iterator->valid()) {
+            $item = $iterator->current();
+            
+            $content .= $item->render();
+            
+            $iterator->next();
+            if ($iterator->valid()) {
+                $content .= ",";
+            }
+        }       
+        
         $content .= "]}";
         
         return $content;

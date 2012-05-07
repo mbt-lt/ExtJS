@@ -233,13 +233,23 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
         }
         
         $content .= "columns: [";
-        foreach ($this->getColumns() as $column) {
-           $content .= "{
-               text: '" . $column['title'] . "',
-               sortable: '" . $column['sortable'] . "',
-               dataIndex: '" . $column['dataIndex'] . "'
-           },";
+        
+        $iterator = new ArrayIterator($this->getColumns());
+        while ($iterator->valid()) {
+            $column = $iterator->current();
+            
+            $content .= "{
+                text: '" . $column['title'] . "',
+                sortable: '" . $column['sortable'] . "',
+                dataIndex: '" . $column['dataIndex'] . "'
+            }";
+            
+            $iterator->next();
+            if ($iterator->valid()) {
+                $content .= ",";
+            }
         }
+       
         $content .= "],";
         
         if ($this->hasPaging()) {

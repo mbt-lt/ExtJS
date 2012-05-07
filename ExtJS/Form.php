@@ -67,14 +67,21 @@ class ExtJS_Form extends Zend_Form
         if ($this->hasSubForms()) {
             $iterator = new ArrayIterator($this->getSubForms());
             while($iterator->valid()) {
-                $
-            }
-            foreach ($this->getSubForms() as $subForm) {
+                $subForm = $iterator->current();
                 $content .= "{";
+                    
                 if ($subForm->getAttrib('width')) {
-                    $content .= "width: " . (int)$subForm->getAttrib('wdith') . ",";
+                    $content .= "width: " . (int)$subForm->getAttrib('width') . ",";
                 }
-                $content .= $subForm->render() . "},";
+                
+                $content .= $subForm->render();
+                
+                $content .= "}";
+                
+                $iterator->next();
+                if ($iterator->valid()) {
+                    $content .= ",";
+                }                
             }
         }
         
@@ -83,6 +90,8 @@ class ExtJS_Form extends Zend_Form
             while ($iterator->valid()) {
                 $element = $iterator->current();
                 $content .= $element->render();
+                
+                $iterator->next();
                 if ($iterator->valid()) {
                     $content .= ",";
                 }
