@@ -63,8 +63,10 @@ class ExtJS_Form extends Zend_Form
         
         $iterator = new ArrayIterator($this->getElements());
         while ($iterator->valid()) {
-            $element = $iterator.current();
+            $element = $iterator->current();
             $content .= $element->render();
+            
+            $iterator->next();
             if ($iterator->valid()) {
                 $content .= ",";
             }
@@ -76,7 +78,7 @@ class ExtJS_Form extends Zend_Form
         
         $iterator = new ArrayIterator($this->getButtons());
         while ($iterator->valid()) {
-            $button = $iterator.current();
+            $button = $iterator->current();
             
             $content .= "{ text: '" . $button->getLabel() . "'";
             $content .= ",itemId: '" . $button->getName() . "'";
@@ -99,8 +101,7 @@ class ExtJS_Form extends Zend_Form
             
             $content .= "}";
             
-            $iterator.next();
-            
+            $iterator->next();
             if ($iterator->valid()) {
                 $content .= ",";
             }
