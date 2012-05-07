@@ -12,7 +12,8 @@ class ExtJS_Form_Element_Button extends Zend_Form_Element_Button
     {
         $content = "{";
         $content .= "text: '" . $this->getLabel() . "',";
-        $content .= "itemId: '" . $this->getName() . "'";
+        $content .= "itemId: '" . $this->getName() . "',";
+        $content .= "xtype: 'button'";
         
         if ($this->getAttrib('bind')) {
             $content .= ", formBind: " . $this->getAttrib('bind');

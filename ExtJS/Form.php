@@ -60,13 +60,22 @@ class ExtJS_Form extends Zend_Form
         }
         
         $content .= ", items: [";
+        
+        $elements = $this->getElements();
+        
+        $i = 0;
         foreach ($this->getElements() as $element) {
-            $content .= $element->render() . ",";
+            $content .= $element->render();
+            if($i < count($this->getElements())-1)
+                $content .= ",";
+            $i++;
         }
+        
         $content .= "],";
         
+        $i = 0;
         $content .= "buttons: [";
-        foreach ($this->getButtons() as $button) {
+        foreach ($this->getButtons() as $key => $button) {
             $content .= "{ text: '" . $button->getLabel() . "',";
             $content .= "itemId: '" . $button->getName() . "',";
               
@@ -82,7 +91,11 @@ class ExtJS_Form extends Zend_Form
                 $content .= "handler: " . $button->getAttrib('handler');
             }
             
-            $content .= "},";
+            $content .= "}";
+            if($i < count($this->getButtons())-1)
+                $content .= ",";
+            
+            $i++;
         }
         $content .= "]";
             
