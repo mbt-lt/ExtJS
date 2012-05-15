@@ -9,6 +9,29 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
 {
     
     /**
+     * check if element has listeners
+     *
+     * @return boolean
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function hasListeners()
+    {
+        return count($this->getAttrib('listeners')) > 0;
+    }
+    
+    /**
+     * returns listeners
+     *
+     * @return array
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function getListeners()
+    {
+        return $this->getAttrib('listeners');
+    }
+
+    
+    /**
      * renders ExtJS form element
      *
      * @return string
@@ -39,21 +62,17 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
         
         $contentButton = "{
             xtype: 'button',
-            text: 'Generate',
-            listeners: {
-                click: {
-                    fn: function() {
-                        Ext.Ajax.request({
-                            url: '" . $this->getAttrib('url') . "',
-                            success: function(response) {
-                                var result = Ext.JSON.decode(response.responseText);
-                                Ext.getCmp('" . $this->_idPrefix . $this->getName() . "').setValue(result.value);
-                            }
-                        });
-                    }
-                }
+            text: 'Generate'";
+    
+        if ($this->hasListeners()) {
+            $contentButton .= ", listeners: {";
+            foreach ($this->getListeners() as $key => $function) {
+                $contentButton .= $key . ": " . $function . ",";
             }
-        }";
+            $contentButton .= "}";
+        }
+        
+        $contentButton .= "}";
         
         /* whole field */
         $content = "{
