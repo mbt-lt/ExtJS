@@ -278,15 +278,24 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
             $content .= "viewConfig: " . $this->getOption('viewConfig') . ',';
         }
         
-        $id = $this->getOption('id');
-                   
         $content .= "
             renderTo: '" . $this->getOption('renderTo') . "',
-            id: '" . ($id ? $id : $this->getOption('renderTo')) . "',
+            id: '" . $this->getId() . "',
             forceFit: true
         })";
         
         return $content;
+    }
+    
+    /**
+     * returns grid id
+     *
+     * @return string
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function getId()
+    {
+        return $this->getOption('id') ? $this->getOption('id') : $this->getOption('renderTo');
     }
     
     /**
