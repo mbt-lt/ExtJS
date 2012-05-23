@@ -33,7 +33,7 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
             name: '" . $this->getName() . "',
             id: '" . $this->getName() ."',
             xtype: 'searchfield',
-            paramName: 'filter',
+            paramName: '" . $this->getParamName() . "',
             value: '" . $this->getValue() . "',
             onTrigger2Click: function() {
                 var me = this,
@@ -57,5 +57,16 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
         $content .= "}";
         
         return $content;
+    }
+    
+    /**
+     * returns param name
+     *
+     * @return string
+     * @author aur1mas <aur1mas@devnet.lt>
+     */
+    public function getParamName()
+    {
+        return $this->getAttrib('paramName') ? $this->getAttrib('paramName') : 'filter';
     }
 }

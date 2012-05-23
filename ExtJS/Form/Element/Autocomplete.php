@@ -5,7 +5,7 @@
  * @package ExtJS
  * @author aur1mas <aur1mas@devnet.lt>
  */
-class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
+class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element_Select
 {
     
     /**
