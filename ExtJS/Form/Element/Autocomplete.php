@@ -5,7 +5,7 @@
  * @package ExtJS
  * @author aur1mas <aur1mas@devnet.lt>
  */
-class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element_Select
+class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
 {
     
     /**
@@ -60,13 +60,25 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element_Select
             forceSelection: true,
             typeAhead: true,
             value: '" . $this->getValue() . "'";
+            
+        if ($this->getAttrib('id')) {
+            $content .= ", id: '" . (string)$this->getAttrib('id') . "'";
+        }
         
         if ($this->getAttrib('disabled') && $this->getAttrib('disabled') === true) {
             $content .= ", disabled: true";
         }
         
+        if ($this->getAttrib('labelWidth')) {
+            $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
+        }
+        
         if ($this->getAttrib('readonly') && $this->getAttrib('readonly') === true) {
             $content .= ", readOnly: true";
+        }
+        
+        if ($this->getAttrib('width')) {
+            $content .= ", width: " . (int)$this->getAttrib('width');
         }
         
         if ($this->isRequired()) {
