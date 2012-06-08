@@ -52,7 +52,7 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             xtype: 'combo',
             fieldLabel: '" . $this->getLabel() . "',
             displayField: '" . $this->getDisplayField() . "',
-            valueField: 'id',
+            valueField: '" . $this->getValueField() . "',
             store: " . $this->getStore() . ",
             queryMode: 'remote',
             minChars: 2,
@@ -79,6 +79,10 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
         
         if ($this->getAttrib('width')) {
             $content .= ", width: " . (int)$this->getAttrib('width');
+        }
+ 
+        if ($this->getAttrib('queryParam')) {
+            $content .= ", queryParam: '" . (string)$this->getAttrib('queryParam') . "'";
         }
         
         if ($this->isRequired()) {
@@ -109,4 +113,16 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
     {
         return $this->getAttrib('displayField') ? $this->getAttrib('displayField') : $this->getName();
     }
+
+    /**
+     * returns display field
+     *
+     * @return string
+     */
+    public function getValueField()
+    {
+        return $this->getAttrib('valueField') ? $this->getAttrib('valueField') : 'id';
+    }
+
 }
+
