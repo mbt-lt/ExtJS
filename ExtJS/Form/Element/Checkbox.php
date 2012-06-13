@@ -20,7 +20,13 @@ class ExtJS_Form_Element_Checkbox extends Zend_Form_Element_Checkbox
             xtype: 'checkboxfield',
             boxLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             name: '" . $this->getName() . "'
-        }";
+        ";
+        
+        if ($this->getAttrib('checked')) {
+            $content .= ', checked: true';
+        }
+        
+        $content .= "}";
         
         return $content;
     }
