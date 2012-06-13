@@ -19,7 +19,7 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
     {
         $config = "{
             xtype: 'displayfield',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             name: '" . $this->getName() . "',
             value: '" . $this->getValue() . "'
         ";

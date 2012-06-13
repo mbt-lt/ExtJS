@@ -24,7 +24,7 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
     {
         $content = "{
             xtype: 'datefield',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getLabelWithDateFormat() . "',
             name: '" . $this->getName() . "',
             format: '" . $this->getFormat() . "',
             value: '" . $this->getValue() . "'
@@ -51,16 +51,17 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
     }
 
     /**
-     * returns field label
+     * returns field label with date format appended
      *
      * @return string
      */
-    public function getLabel()
+    public function getLabelWithDateFormat()
     {
-        $label = parent::getLabel();
         if ($this->_appendDateFormatToLabel) {
-            $label .= ' (' . $this->getFormat() . ')';
+            $this->setLabel($this->getLabel() . ' (' . $this->getFormat() . ')');
         }
+        $label = $this->getDecorator('label')->setElement($this)->getLabel();
+        
         return $label;
     }
 

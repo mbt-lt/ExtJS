@@ -45,7 +45,7 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
             name: '" . $this->getName() . "',
             id: '" . $this->_idPrefix . $this->getName() . "',
             xtype: 'textfield',
-            fieldLabel: '" . $this->getLabel() ."',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() ."',
             value: '" . $this->getValue() . "'";
          
         if ($this->getAttrib('validator')) {

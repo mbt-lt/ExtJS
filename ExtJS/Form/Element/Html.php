@@ -12,7 +12,7 @@ class ExtJS_Form_Element_Html extends Zend_Form_Element_Textarea
         return "{
             xtype: 'htmleditor',
             name: '" . $this->getName() . "',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             value: '" . $this->getValue() . "'
         }";
     }

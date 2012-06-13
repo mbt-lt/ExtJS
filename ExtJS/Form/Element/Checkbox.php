@@ -18,7 +18,7 @@ class ExtJS_Form_Element_Checkbox extends Zend_Form_Element_Checkbox
     {
         $content = "{
             xtype: 'checkboxfield',
-            boxLabel: '" . $this->getLabel() . "',
+            boxLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             name: '" . $this->getName() . "'
         }";
         

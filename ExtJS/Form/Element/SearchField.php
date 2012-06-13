@@ -27,7 +27,7 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
     public function render()
     {
         $content = "{
-            fieldLabel: '" . $this->getLabel() ."',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() ."',
             hasSearch: true,
             store: Ext.data.StoreManager.get('grid-store'),
             name: '" . $this->getName() . "',

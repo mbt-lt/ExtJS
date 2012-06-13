@@ -50,7 +50,7 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
         $content = "{
             name: '" . $this->getName() . "',
             xtype: 'combo',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             displayField: '" . $this->getDisplayField() . "',
             valueField: '" . $this->getValueField() . "',
             store: " . $this->getStore() . ",
