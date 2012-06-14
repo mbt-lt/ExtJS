@@ -44,6 +44,14 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
         if ($this->getAttrib('validator')) {
             $content .= ", validator: " . $this->getAttrib('validator');
         }
+        
+        if ($this->getAttrib('minLength')) {
+            $content .= ", minLength: " . (int)$this->getAttrib('minLength');
+        }
+        
+        if ($this->getAttrib('maxLength')) {
+            $content .= ", maxLength: " . (int)$this->getAttrib('maxLength');
+        }
          
         if ($this->isRequired()) {
             $content .= ", allowBlank: false";
