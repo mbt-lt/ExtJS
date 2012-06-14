@@ -57,12 +57,18 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             queryMode: 'remote',
             minChars: 2,
             hasTrigger: true,
-            forceSelection: true,
             typeAhead: true,
             value: '" . $this->getValue() . "'";
             
         if ($this->getAttrib('id')) {
             $content .= ", id: '" . (string)$this->getAttrib('id') . "'";
+        }
+        
+        /* default behaviour is true */
+        if ($this->getAttrib('forceSelection') === false) {
+            $content .= ', forceSelection: false';
+        } else {
+            $content .= ', forceSelection: true';
         }
         
         if ($this->getAttrib('disabled') && $this->getAttrib('disabled') === true) {
