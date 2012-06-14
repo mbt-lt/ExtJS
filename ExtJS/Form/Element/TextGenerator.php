@@ -51,6 +51,14 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
         if ($this->getAttrib('validator')) {
             $contentText .= ", validator: " . $this->getAttrib('validator');
         }
+        
+        if ($this->getAttrib('minLength')) {
+            $contentText .= ", minLength: " . (int)$this->getAttrib('minLength');
+        }
+        
+        if ($this->getAttrib('maxLength')) {
+            $contentText .= ", maxLength: " . (int)$this->getAttrib('maxLength');
+        }
          
         if ($this->isRequired()) {
             $contentText .= ", allowBlank: false";
