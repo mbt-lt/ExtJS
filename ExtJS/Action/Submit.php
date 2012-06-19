@@ -24,6 +24,18 @@ class ExtJS_Action_Submit extends ExtJS_Action_Abstract
      * @var string
      */
     protected $_failureTitle = 'Failure';
+
+    /**
+     * Custom callback function on submit success
+     * @var string
+     */
+    protected $_customSuccessCallback = null;
+    
+    /**
+     * Custom callback function on submit failure
+     * @var string
+     */
+    protected $_customFailureCallback = null;
     
     
     protected function _getFunction()
@@ -37,12 +49,54 @@ class ExtJS_Action_Submit extends ExtJS_Action_Abstract
             url: '" . $this->getOption('submitUrl') . "',
             waitMsg: '" . $this->_waitMsg . "',
             success: function(form, action) {
-                Ext.Msg.alert('" . $this->_successTitle . "', action.result.msg);
+                " . $this->_getSuccessCallback() . "
             },
             failure: function(form, action) {
-                Ext.Msg.alert('" . $this->_failureTitle . "', action.result.msg);
+                " . $this->_getFailureCallback() . "
             }
         }";
+    }
+    
+    /**
+     * Override default callback for successful submit
+     * @param string $callback
+     */
+    public function setSuccessCallback($callback)
+    {
+        $this->_customSuccessCallback = $callback;
+    }
+    
+    /**
+     * Override default callback for failed submit
+     * @param string $callback
+     */
+    public function setFailureCallback($callback)
+    {
+        $this->_customFailureCallback = $callback;
+    }
+    
+    /**
+     * Success callback
+     * 
+     * @return string
+     */
+    protected function _getSuccessCallback()
+    {
+        return $this->_customSuccessCallback ?: "Ext.Msg.alert('" . $this->_successTitle . "', action.result.msg);";
+    }
+    
+    /**
+     * Failure callback
+     * 
+     * @return string
+     */
+    protected function _getFailureCallback()
+    {
+        return $this->_customFailureCallback ?: "
+            if (action.failureType == 'server') {
+                Ext.Msg.alert('" . $this->_failureTitle . "', action.result.msg);
+            }
+        ";
     }
     
 }

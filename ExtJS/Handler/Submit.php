@@ -13,14 +13,38 @@ class ExtJS_Handler_Submit extends ExtJS_Handler
      */
     protected $_submitActionClass = 'ExtJS_Action_Submit';
     
+    /**
+     * Submit action
+     * @var ExtJS_Action_Submit
+     */
+    protected $_submitAction = null;
+    
     protected function _getBody()
     {
-        $submitAction = new $this->_submitActionClass();
-        $submitAction->setOption('submitUrl', $this->getOption('submitUrl'));
+        $submitAction = $this->getSubmitAction();
         
         $body = $submitAction->render();
         
         return $body;
+    }
+    
+    /**
+     * Get submit action
+     * 
+     * @return ExtJS_Action_Submit
+     */
+    public function getSubmitAction()
+    {
+        if ($this->_submitAction == null) {
+            $this->_submitAction = new $this->_submitActionClass();
+        }
+        
+        /* add submit url if not set */
+        if (!$this->_submitAction->hasOption('submitUrl')) {
+            $this->_submitAction->setOption('submitUrl', $this->getOption('submitUrl'));
+        }
+        
+        return $this->_submitAction;
     }
     
 }
