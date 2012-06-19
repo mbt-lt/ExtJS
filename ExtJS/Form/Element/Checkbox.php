@@ -30,6 +30,10 @@ class ExtJS_Form_Element_Checkbox extends Zend_Form_Element_Checkbox
             $content .= ', checked: true';
         }
         
+        if ($this->getAttrib('style')) {
+            $content .= ", style: " . $this->getAttrib('style');
+        }
+        
         $content .= "}";
         
         return $content;
