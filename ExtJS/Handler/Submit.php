@@ -38,12 +38,7 @@ class ExtJS_Handler_Submit extends ExtJS_Handler
         if ($this->_submitAction == null) {
             $this->_submitAction = new $this->_submitActionClass();
         }
-        
-        /* add submit url if not set */
-        if (!$this->_submitAction->hasOption('submitUrl')) {
-            $this->_submitAction->setOption('submitUrl', $this->getOption('submitUrl'));
-        }
-        
+                
         return $this->_submitAction;
     }
     
