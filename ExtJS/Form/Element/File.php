@@ -21,6 +21,11 @@ class ExtJS_Form_Element_File extends Zend_Form_Element_File
         $content .= "name : '" . $this->getName() . "',";
         $content .= "fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',";
         $content .= "buttonText: 'Browse...'";
+        
+        if ($this->getAttrib('disabled') && (boolean)$this->getAttrib('disabled') === true) {
+            $content .= ", disabled: true";
+        }
+        
         $content .= "}";
         
         return $content;
