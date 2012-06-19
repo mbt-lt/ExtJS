@@ -19,7 +19,7 @@ class ExtJS_Form_Element_File extends Zend_Form_Element_File
         $content = "{";
         $content .= "xtype: 'filefield',";
         $content .= "name : '" . $this->getName() . "',";
-        $content .= "fieldLabel: '" . $this->getLabel() . "',";
+        $content .= "fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',";
         $content .= "buttonText: 'Browse...'";
         $content .= "}";
         

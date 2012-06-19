@@ -17,11 +17,19 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
      */
     public function render()
     {
-        return "{
+        $config = "{
             xtype: 'displayfield',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             name: '" . $this->getName() . "',
             value: '" . $this->getValue() . "'
-        }";
+        ";
+
+        if ($this->getAttrib('id')) {
+            $config .= ', id: "' . $this->getAttrib('id') . '"';
+        }
+
+        $config .= "}";
+
+        return $config;
     }
 }

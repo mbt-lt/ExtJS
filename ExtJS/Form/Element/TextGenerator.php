@@ -45,11 +45,19 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
             name: '" . $this->getName() . "',
             id: '" . $this->_idPrefix . $this->getName() . "',
             xtype: 'textfield',
-            fieldLabel: '" . $this->getLabel() ."',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() ."',
             value: '" . $this->getValue() . "'";
          
         if ($this->getAttrib('validator')) {
             $contentText .= ", validator: " . $this->getAttrib('validator');
+        }
+        
+        if ($this->getAttrib('minLength')) {
+            $contentText .= ", minLength: " . (int)$this->getAttrib('minLength');
+        }
+        
+        if ($this->getAttrib('maxLength')) {
+            $contentText .= ", maxLength: " . (int)$this->getAttrib('maxLength');
         }
          
         if ($this->isRequired()) {

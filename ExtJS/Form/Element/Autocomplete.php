@@ -50,19 +50,25 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
         $content = "{
             name: '" . $this->getName() . "',
             xtype: 'combo',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             displayField: '" . $this->getDisplayField() . "',
-            valueField: 'id',
+            valueField: '" . $this->getValueField() . "',
             store: " . $this->getStore() . ",
             queryMode: 'remote',
             minChars: 2,
             hasTrigger: true,
-            forceSelection: true,
             typeAhead: true,
             value: '" . $this->getValue() . "'";
             
         if ($this->getAttrib('id')) {
             $content .= ", id: '" . (string)$this->getAttrib('id') . "'";
+        }
+        
+        /* default behaviour is true */
+        if ($this->getAttrib('forceSelection') === false) {
+            $content .= ', forceSelection: false';
+        } else {
+            $content .= ', forceSelection: true';
         }
         
         if ($this->getAttrib('disabled') && $this->getAttrib('disabled') === true) {
@@ -79,6 +85,10 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
         
         if ($this->getAttrib('width')) {
             $content .= ", width: " . (int)$this->getAttrib('width');
+        }
+ 
+        if ($this->getAttrib('queryParam')) {
+            $content .= ", queryParam: '" . (string)$this->getAttrib('queryParam') . "'";
         }
         
         if ($this->isRequired()) {
@@ -109,4 +119,16 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
     {
         return $this->getAttrib('displayField') ? $this->getAttrib('displayField') : $this->getName();
     }
+
+    /**
+     * returns display field
+     *
+     * @return string
+     */
+    public function getValueField()
+    {
+        return $this->getAttrib('valueField') ? $this->getAttrib('valueField') : 'id';
+    }
+
 }
+

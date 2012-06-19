@@ -28,18 +28,30 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
      * @return string
      * @author aur1mas <aur1mas@devnet.lt>
      */
-    public function render()
+    public function render(Zend_View_Interface $view = null)
     {
+        if (null !== $view) {
+            $this->setView($view);
+        }
+        
         $content = "{
-            fieldLabel: '" . $this->getLabel() ."',
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() ."',
             name: '" . $this->getName() . "',
             id: '" . $this->_idPrefix . $this->getName() ."',
             xtype: 'textfield',
             value: '" . $this->getValue() . "'";
          
-         if ($this->getAttrib('validator')) {
-             $content .= ", validator: " . $this->getAttrib('validator');
-         }
+        if ($this->getAttrib('validator')) {
+            $content .= ", validator: " . $this->getAttrib('validator');
+        }
+        
+        if ($this->getAttrib('minLength')) {
+            $content .= ", minLength: " . (int)$this->getAttrib('minLength');
+        }
+        
+        if ($this->getAttrib('maxLength')) {
+            $content .= ", maxLength: " . (int)$this->getAttrib('maxLength');
+        }
          
         if ($this->isRequired()) {
             $content .= ", allowBlank: false";

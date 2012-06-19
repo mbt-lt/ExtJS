@@ -7,6 +7,12 @@
  */
 class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
 {
+
+    /**
+     * Append date format to label.
+     * Defaults to false to better future compatibility.
+     */
+    protected $_appendDateFormatToLabel = false;
     
     /**
      * renders ExtJS Form Element content
@@ -18,7 +24,7 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
     {
         $content = "{
             xtype: 'datefield',
-            fieldLabel: '" . $this->getLabel() . "',
+            fieldLabel: '" . $this->getLabelWithDateFormat() . "',
             name: '" . $this->getName() . "',
             format: '" . $this->getFormat() . "',
             value: '" . $this->getValue() . "'
@@ -43,4 +49,32 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
     {
         return $this->getAttrib('format') ? $this->getAttrib('format') : "m/d/Y";
     }
+
+    /**
+     * returns field label with date format appended
+     *
+     * @return string
+     */
+    public function getLabelWithDateFormat()
+    {
+        if ($this->_appendDateFormatToLabel) {
+            $this->setLabel($this->getLabel() . ' (' . $this->getFormat() . ')');
+        }
+        $label = $this->getDecorator('label')->setElement($this)->getLabel();
+        
+        return $label;
+    }
+
+    /**
+     * Set flag if date format should automatically be appended to field label
+     *
+     * @param bool $val
+     * @return ExtJS_Form_Element_DatePicker
+     */
+    public function appendDateFormatToLabel($val = true)
+    {
+        $this->_appendDateFormatToLabel = $val;
+        return $this;
+    }
+
 }

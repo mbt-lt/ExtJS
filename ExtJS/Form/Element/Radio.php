@@ -15,7 +15,7 @@ class ExtJS_Form_Element_Radio extends Zend_Form_Element_Radio
             xtype: 'radiogroup',
             layout: 'hbox',
             width: 255,
-            fieldLabel: '" . $this->getLabel() . "',";
+            fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',";
         
         if ($this->isRequired()) {
             $content .= "allowBlank: false,";
