@@ -18,6 +18,11 @@ abstract class ExtJS_Element_Abstract implements ExtJS_Element_Interface
     protected $_options = array();
     
     /**
+     * @var Zend_View_Interface
+     */
+    protected $_view;
+    
+    /**
      * constructs object
      *
      * @param array $options 
@@ -93,4 +98,35 @@ abstract class ExtJS_Element_Abstract implements ExtJS_Element_Interface
     {
         return $this->render();
     }
+    
+    /**
+     * Set view object
+     *
+     * @param  Zend_View_Interface $view
+     * @return Zend_Form
+     */
+    public function setView(Zend_View_Interface $view = null)
+    {
+        $this->_view = $view;
+        return $this;
+    }
+
+    /**
+     * Retrieve view object
+     *
+     * If none registered, attempts to pull from ViewRenderer.
+     *
+     * @return Zend_View_Interface|null
+     */
+    public function getView()
+    {
+        if (null === $this->_view) {
+            require_once 'Zend/Controller/Action/HelperBroker.php';
+            $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('viewRenderer');
+            $this->setView($viewRenderer->view);
+        }
+
+        return $this->_view;
+    }
+    
 }
