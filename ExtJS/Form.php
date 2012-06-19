@@ -106,26 +106,7 @@ class ExtJS_Form extends Zend_Form
         while ($iterator->valid()) {
             $button = $iterator->current();
             
-            $content .= "{ text: '" . $button->getLabel() . "'";
-            $content .= ",itemId: '" . $button->getName() . "'";
-              
-            if ($button->getAttrib('bind')) {
-                $content .= ",formBind: " . $button->getAttrib('bind');
-            }
-            
-            if ($button->getAttrib('disabled') && $button->getAttrib('disabled') === true) {
-                $content .= ",disabled: true";
-            }
-            
-            if ($button->getAttrib('handler')) {
-                $content .= ",handler: " . $button->getAttrib('handler');
-            }
-            
-            if ($button->getAttrib('hidden') && $button->getAttrib('hidden') === true) {
-                $content .= ",hidden: true";
-            }
-            
-            $content .= "}";
+            $content .= $button->render();
             
             $iterator->next();
             
@@ -154,7 +135,7 @@ class ExtJS_Form extends Zend_Form
 
         // strip buttons
         foreach ($elements as $key => $element) {
-            if (in_array($element->getType(), array('Zend_Form_Element_Submit', 'Zend_Form_Element_Button'))) {
+            if (in_array($element->getType(), array('Zend_Form_Element_Submit', 'ExtJS_Form_Element_Button'))) {
                 unset($elements[$key]);
             }
         }
@@ -174,7 +155,7 @@ class ExtJS_Form extends Zend_Form
         
         // strip buttons
         foreach ($buttons as $key => $element) {
-            if (!in_array($element->getType(), array('Zend_Form_Element_Submit', 'Zend_Form_Element_Button'))) {
+            if (!in_array($element->getType(), array('Zend_Form_Element_Submit', 'ExtJS_Form_Element_Button'))) {
                 unset($buttons[$key]);
             }
         }

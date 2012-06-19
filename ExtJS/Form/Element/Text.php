@@ -52,6 +52,10 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
         if ($this->getAttrib('maxLength')) {
             $content .= ", maxLength: " . (int)$this->getAttrib('maxLength');
         }
+        
+        if ($this->getAttrib('vtype')) {
+            $content .= ", vtype: '" . $this->getAttrib('vtype') . "'";
+        }
          
         if ($this->isRequired()) {
             $content .= ", allowBlank: false";
