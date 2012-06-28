@@ -64,6 +64,10 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
             $contentText .= ", allowBlank: false";
         }
         
+        if ($this->getAttrib('labelWidth')) {
+            $contentText .= ', labelWidth: ' .  $this->getAttrib('labelWidth');
+        }
+        
         $contentText .= "}";
         
         /* generator button content */
@@ -90,8 +94,14 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
             frame: false,
             bodyStyle: 'background: transparent;',
             ctCls: 'multicolumn',
-            items: [$contentText,$contentButton]
-        }";
+        ";
+        
+        if ($this->getAttrib('width')) {
+            $content .= "width: " . $this->getAttrib('width') . ',';
+        }
+        
+        $content .= " items: [$contentText,$contentButton] ";
+        $content .= '}';
         
         return $content;
     }

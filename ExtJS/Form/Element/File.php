@@ -26,6 +26,10 @@ class ExtJS_Form_Element_File extends Zend_Form_Element_File
             $content .= ", disabled: true";
         }
         
+        if ($this->getAttrib('labelWidth')) {
+            $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
+        }
+        
         $content .= "}";
         
         return $content;

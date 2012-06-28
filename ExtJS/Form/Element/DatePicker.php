@@ -34,6 +34,10 @@ class ExtJS_Form_Element_DatePicker extends Zend_Form_Element_Text
             $content .= ", allowBlank: false";
         }
         
+        if ($this->getAttrib('labelWidth')) {
+            $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
+        }
+        
         $content .= "}";
         
         return $content;

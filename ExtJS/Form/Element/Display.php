@@ -27,6 +27,10 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
         if ($this->getAttrib('id')) {
             $config .= ', id: "' . $this->getAttrib('id') . '"';
         }
+        
+        if ($this->getAttrib('labelWidth')) {
+            $config .= ", labelWidth: " . $this->getAttrib('labelWidth');
+        }
 
         $config .= "}";
 

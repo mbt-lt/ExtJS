@@ -16,12 +16,20 @@ class ExtJS_Form_Element_Textarea extends Zend_Form_Element_Textarea
      */
     public function render()
     {
-        return "{
+        $content = "{
             xtype: 'textareafield',
             grow: true,
             name: '" . $this->getName() ."',
             fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             value: '" . $this->getValue() . "'
-        }";
+        ";
+        
+        if ($this->getAttrib('labelWidth')) {
+            $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
+        }
+        
+        $content .= "}";
+        
+        return $content;
     }
 }
