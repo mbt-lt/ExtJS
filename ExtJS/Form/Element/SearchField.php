@@ -12,6 +12,7 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
     public function setListId($listId)
     {
         $this->_listId = $listId;
+        return $this;
     }
     
     public function getListId()
