@@ -36,6 +36,23 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
             xtype: 'searchfield',
             paramName: '" . $this->getParamName() . "',
             value: '" . $this->getValue() . "',
+            
+            onTrigger1Click : function(){
+                var me = this,
+                    store = me.store,
+                    proxy = store.getProxy(),
+                    val;
+                    
+                if (me.hasSearch) {
+                    me.setValue('');
+                    proxy.extraParams[me.paramName] = '';
+                    store.load();
+                    me.hasSearch = false;
+                    me.triggerEl.item(0).setDisplayed('none');
+                    me.doComponentLayout();
+                }
+            },
+    
             onTrigger2Click: function() {
                 var me = this,
                 store = me.store,
