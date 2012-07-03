@@ -40,6 +40,10 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
             $config .= ", style: " . $this->getAttrib('style');
         }
 
+        if ($this->getAttrib('width')) {
+            $config .= ", width: " . (int)$this->getAttrib('width');
+        }
+
         $config .= "}";
 
         return $config;
