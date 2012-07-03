@@ -36,6 +36,10 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
             $config .= ", disabled: true";
         }
 
+        if ($this->getAttrib('style')) {
+            $config .= ", style: " . $this->getAttrib('style');
+        }
+
         $config .= "}";
 
         return $config;
