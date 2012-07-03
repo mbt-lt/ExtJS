@@ -32,6 +32,10 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
             $config .= ", labelWidth: " . $this->getAttrib('labelWidth');
         }
 
+        if ($this->getAttrib('disabled') && $this->getAttrib('disabled') === true) {
+            $config .= ", disabled: true";
+        }
+
         $config .= "}";
 
         return $config;
