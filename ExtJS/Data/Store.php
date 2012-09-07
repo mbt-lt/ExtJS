@@ -120,6 +120,14 @@ class ExtJS_Data_Store extends ExtJS_Element_Abstract
             throw new ExtJS_Exception("Wrong data type");
         }
         
+        if ($this->hasOption('listeners')) {
+            $content .= ", listeners: {";
+            foreach ($this->getOption('listeners') as $key => $function) {
+                $content .= $key . ": " . $function . ",";
+            }
+            $content .= "}";
+        }
+        
         $content .= "}) \r\n";
         
         return $content;
