@@ -65,6 +65,10 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
             $content .= ', readOnly: true';
         }
         
+        if ($this->getAttrib('disabled')) {
+            $content .= ', disabled: true';
+        }
+        
         if ($this->isRequired()) {
             $content .= ", allowBlank: false";
         }
