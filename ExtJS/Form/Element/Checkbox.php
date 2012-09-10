@@ -46,6 +46,10 @@ class ExtJS_Form_Element_Checkbox extends Zend_Form_Element_Checkbox
             $content .= ", id: '" . $this->getAttrib('id') . "'";
         }
         
+        if ($this->getAttrib('readOnly')) {
+            $content .= ', readOnly: true';
+        }
+        
         $content .= "}";
         
         return $content;

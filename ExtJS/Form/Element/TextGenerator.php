@@ -68,6 +68,10 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
             $contentText .= ', labelWidth: ' .  $this->getAttrib('labelWidth');
         }
         
+        if ($this->getAttrib('readOnly')) {
+            $contentText .= ', readOnly: true';
+        }
+        
         $contentText .= "}";
         
         /* generator button content */
@@ -82,6 +86,10 @@ class ExtJS_Form_Element_TextGenerator extends ExtJS_Form_Element_Text
                 $contentButton .= $key . ": " . $function . ",";
             }
             $contentButton .= "}";
+        }
+        
+        if ($this->getAttrib('readOnly')) {
+            $contentButton .= ',disabled: true';
         }
         
         $contentButton .= "}";

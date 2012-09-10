@@ -60,7 +60,11 @@ class ExtJS_Form_Element_Text extends Zend_Form_Element_Text
         if ($this->getAttrib('labelWidth')) {
             $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
         }
-         
+    
+        if ($this->getAttrib('readOnly')) {
+            $content .= ', readOnly: true';
+        }
+        
         if ($this->isRequired()) {
             $content .= ", allowBlank: false";
         }

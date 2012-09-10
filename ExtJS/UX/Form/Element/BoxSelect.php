@@ -70,7 +70,8 @@ class ExtJS_UX_Form_Element_BoxSelect extends Zend_Form_Element
             store: " . $this->getStore() . ",
             queryMode: 'remote',
             value: '" . $this->getValue() . "',
-            encodeSubmitValue: true
+            encodeSubmitValue: true,
+            readOnly: " . ($this->getAttrib('readOnly') ? 'true' : 'false') . "
         }";
         return $content;
 

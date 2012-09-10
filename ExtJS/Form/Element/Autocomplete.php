@@ -95,6 +95,10 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             $content .= ", allowBlank: false";
         }
         
+        if ($this->getAttrib('readOnly')) {
+            $content .= ', readOnly: true';
+        }
+        
         if ($this->getAttrib('listeners')) {
             $content .= ", listeners: {";
             foreach ($this->getAttrib('listeners') as $key => $function) {

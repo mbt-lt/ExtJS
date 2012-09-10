@@ -30,6 +30,10 @@ class ExtJS_Form_Element_File extends Zend_Form_Element_File
             $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
         }
         
+        if ($this->getAttrib('readOnly')) {
+            $content .= ', disabled: true';
+        }
+        
         $content .= "}";
         
         return $content;

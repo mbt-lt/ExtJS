@@ -28,6 +28,10 @@ class ExtJS_Form_Element_Textarea extends Zend_Form_Element_Textarea
             $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
         }
         
+        if ($this->getAttrib('readOnly')) {
+            $content .= ', readOnly: true';
+        }
+        
         $content .= "}";
         
         return $content;
