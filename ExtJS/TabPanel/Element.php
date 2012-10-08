@@ -87,7 +87,7 @@ class ExtJS_TabPanel_Element extends ExtjS_Element_Abstract
     public function render()
     {
         $content = "{";
-        $content .= "title: '" . $this->getTitle() . "',";
+        $content .= "title: '" . htmlspecialchars($this->getTitle(), ENT_QUOTES) . "',";
         
         $content .= "loader: {
             url: '" . $this->getOption('url') . "',

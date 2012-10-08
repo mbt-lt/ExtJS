@@ -111,7 +111,7 @@ class ExtJS_Data_Store extends ExtJS_Element_Abstract
             foreach ($this->getOption('data') as $row) {
                 $content .= "{";
                 foreach ($row as $key => $value) {
-                    $content .= (string)$key . ": '" . (string)$value . "', ";
+                    $content .= (string)$key . ": '" . htmlspecialchars((string)$value, ENT_QUOTES) . "', ";
                 }
                 $content .= "},";
             }
