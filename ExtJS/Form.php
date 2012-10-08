@@ -53,7 +53,7 @@ class ExtJS_Form extends Zend_Form
                     $content .= "defaults: " . (string)$value;
                     break;
                 default:
-                    $content .= $name . ": '" . (string)$value . "'";
+                    $content .= $name . ": '" . htmlspecialchars((string)$value, ENT_QUOTES) . "'";
                     break;
             }
         }

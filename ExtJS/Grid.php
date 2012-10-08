@@ -257,7 +257,7 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
         }
         
         if ($this->hasOption('title')) {
-            $content .= "title: '" . $this->getOption('title') . "',";
+            $content .= "title: '" . htmlspecialchars($this->getOption('title'), ENT_QUOTES) . "',";
         }
         
         if ($this->hasTopBar()) {
