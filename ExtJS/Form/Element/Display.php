@@ -21,7 +21,7 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
             xtype: 'displayfield',
             fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
             name: '" . $this->getName() . "',
-            value: '" . htmlspecialchars($this->getValue(), ENT_QUOTES) . "'
+            value: " . json_encode($this->getValue()) . "
         ";
 
         if ($this->getAttrib('id')) {
