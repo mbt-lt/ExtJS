@@ -14,6 +14,10 @@ class ExtJS_Form_Element_Button extends Zend_Form_Element_Button
         $content .= "text: '" . $this->getLabel() . "'";
         $content .= ",itemId: '" . $this->getName() . "'";
         $content .= ",xtype: 'button'";
+        
+        if ($this->getAttrib('id')) {
+            $content .= ",id: '" . $this->getAttrib('id') . "'";
+        }
           
         if ($this->getAttrib('bind')) {
             $content .= ",formBind: " . $this->getAttrib('bind');
@@ -29,6 +33,14 @@ class ExtJS_Form_Element_Button extends Zend_Form_Element_Button
         
         if ($this->getAttrib('hidden') && $this->getAttrib('hidden') === true) {
             $content .= ",hidden: true";
+        }
+        
+        if ($this->getAttrib('listeners')) {
+            $content .= ", listeners: {";
+            foreach ($this->getAttrib('listeners') as $key => $function) {
+                $content .= $key . ": " . $function . ",";
+            }
+            $content .= "}";
         }
         
         $content .= "}";

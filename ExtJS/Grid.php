@@ -278,6 +278,10 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
             $content .= "viewConfig: " . $this->getOption('viewConfig') . ',';
         }
         
+        if ($this->hasOption('selModel')) {
+            $content .= "selModel: " . $this->getOption('selModel') . ',';
+        }
+        
         $content .= "
             renderTo: '" . $this->getOption('renderTo') . "',
             id: '" . $this->getId() . "',
