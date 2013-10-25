@@ -21,7 +21,7 @@ class ExtJS_Form_Element_Textarea extends Zend_Form_Element_Textarea
             grow: true,
             name: '" . $this->getName() ."',
             fieldLabel: '" . $this->getDecorator('label')->setElement($this)->getLabel() . "',
-            value: '" . $this->getValue() . "'
+            value: " . json_encode($this->getValue()) . "
         ";
         
         if ($this->getAttrib('labelWidth')) {
@@ -36,4 +36,5 @@ class ExtJS_Form_Element_Textarea extends Zend_Form_Element_Textarea
         
         return $content;
     }
+    
 }
