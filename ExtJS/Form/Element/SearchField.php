@@ -51,6 +51,7 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
                     me.triggerEl.item(0).setDisplayed('none');
                     me.doComponentLayout();
                 }
+                me.rememberSelectionHandler();
             },
     
             onTrigger2Click: function() {
@@ -68,8 +69,12 @@ class ExtJS_Form_Element_SearchField extends Zend_Form_Element
                 store.loadPage(1);
                 me.hasSearch = true;
                 me.triggerEl.item(0).setDisplayed('block');
-                me.doComponentLayout();            
-            }
+                me.doComponentLayout();
+                me.rememberSelectionHandler();
+            },
+
+            // override if needed
+            rememberSelectionHandler: function() {}
         ";
                  
         $content .= "}";
