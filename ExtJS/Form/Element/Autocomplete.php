@@ -79,6 +79,10 @@ class ExtJS_Form_Element_Autocomplete extends Zend_Form_Element
             $content .= ', labelWidth: \'' .  $this->getAttrib('labelWidth') . '\'';
         }
         
+        if ($this->getAttrib('labelAlign')) {
+            $content .= ', labelAlign: \'' .  $this->getAttrib('labelAlign') . '\'';
+        }
+
         if ($this->getAttrib('readonly') && $this->getAttrib('readonly') === true) {
             $content .= ", readOnly: true";
         }
