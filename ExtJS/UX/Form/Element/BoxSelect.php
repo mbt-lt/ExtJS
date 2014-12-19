@@ -61,6 +61,11 @@ class ExtJS_UX_Form_Element_BoxSelect extends Zend_Form_Element
      */
     public function render()
     {
+        if (is_array($this->getValue())) {
+            $value = Zend_Json::encode($this->getValue());
+        } else {
+            $value = $this->getValue();
+        }
         $content = "{
             name: '" . $this->getName() . "',
             xtype: 'boxselect',
@@ -69,11 +74,17 @@ class ExtJS_UX_Form_Element_BoxSelect extends Zend_Form_Element
             valueField: 'id',
             store: " . $this->getStore() . ",
             queryMode: 'remote',
-            value: '" . $this->getValue() . "',
+            value: '" . $value . "',
             encodeSubmitValue: true,
             readOnly: " . ($this->getAttrib('readOnly') ? 'true' : 'false') . ",
             minChars: 3
-        }";
+        ";
+
+        if ($this->getAttrib('id')) {
+            $content .= ", id: '" . (string)$this->getAttrib('id') . "'";
+        }
+
+        $content .= "}";
         return $content;
 
     }
