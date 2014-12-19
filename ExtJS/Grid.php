@@ -243,7 +243,7 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
                 sortable: '" . $column['sortable'] . "',
                 dataIndex: '" . $column['dataIndex'] . "'
             ";
-            if ($column['renderer']) {
+            if (!empty($column['renderer'])) {
                 $content .= ",renderer: " . $column['renderer'];
             }
             $content .= "}";
