@@ -64,7 +64,7 @@ class ExtJS_UX_Form_Element_BoxSelect extends Zend_Form_Element
         if (is_array($this->getValue())) {
             $value = Zend_Json::encode($this->getValue());
         } else {
-            $value = $this->getValue();
+            $value = Zend_Json::encode([$this->getValue()]);
         }
         $content = "{
             name: '" . $this->getName() . "',
