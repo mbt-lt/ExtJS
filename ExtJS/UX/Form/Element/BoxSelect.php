@@ -84,6 +84,14 @@ class ExtJS_UX_Form_Element_BoxSelect extends Zend_Form_Element
             $content .= ", id: '" . (string)$this->getAttrib('id') . "'";
         }
 
+        if ($this->getAttrib('listeners')) {
+            $content .= ", listeners: {";
+            foreach ($this->getAttrib('listeners') as $key => $function) {
+                $content .= $key . ": " . $function . ",";
+            }
+            $content .= "}";
+        }
+
         $content .= "}";
         return $content;
 

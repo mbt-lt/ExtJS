@@ -14,7 +14,12 @@ class ExtJS_Grid_PagingToolbar
      * @var ExtJS_Grid_Store
      */
     protected $_store;
-    
+
+    /**
+     * @var string
+     */
+    protected $_items;
+
     /**
      * adds store
      *
@@ -58,6 +63,11 @@ class ExtJS_Grid_PagingToolbar
         $content = "Ext.create('Ext.PagingToolbar', {";
         $content .= "store: " . $this->getStore() . " ,";
         $content .= "displayInfo: true";
+
+        if ($this->_items) {
+            $content .= ",items: " . $this->_items;
+        }
+
         $content .= "})";
         
         return $content;   
@@ -71,5 +81,17 @@ class ExtJS_Grid_PagingToolbar
     public function __toString()
     {
         return $this->render();
+    }
+    
+    /**
+     * Set items to paging toolbar
+     * @param string $config
+     * @return ExtJS_Grid_PagingToolbar
+     */
+    public function setItems($config)
+    {
+        $this->_items = $config;
+
+        return $this;
     }
 }

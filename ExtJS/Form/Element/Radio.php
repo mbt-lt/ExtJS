@@ -26,11 +26,7 @@ class ExtJS_Form_Element_Radio extends Zend_Form_Element_Radio
         if ($this->getAttrib('labelWidth')) {
             $content .= "labelWidth: " .  $this->getAttrib('labelWidth') . ",";
         }
-        
-        if ($this->getAttrib('readOnly')) {
-            $content .= 'disabled: true,';
-        }
-        
+
         $content .= "items: [";    
         foreach ($this->getMultiOptions() as $key => $value) {
             $content .= "{
@@ -41,6 +37,10 @@ class ExtJS_Form_Element_Radio extends Zend_Form_Element_Radio
                 
             if ($this->getAttrib('handler')) {
                 $content .= ", handler: " . $this->getAttrib('handler') . ",";
+            }
+
+            if ($this->getAttrib('readOnly')) {
+                $content .= ', readOnly: true';
             }
 
             $content .= "},";

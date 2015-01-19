@@ -162,6 +162,14 @@ class ExtJS_Grid extends ExtJS_Element_Abstract
     }
     
     /**
+     * check if grid has store
+     */
+    public function hasStore()
+    {
+        return $this->_store instanceof ExtJS_Data_Store;
+    }
+    
+    /**
      * ExtJS data store
      *
      * @param mixed <ExtJS_Data_Store|string> $store    store can be object or just store id if it's already created

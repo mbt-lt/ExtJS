@@ -22,10 +22,18 @@ class ExtJS_Form_Element_Checkbox extends Zend_Form_Element_Checkbox
             name: '" . $this->getName() . "'
         ";
         
+        if ($this->getAttrib('boxLabelCls')) {
+            $content .= ', boxLabelCls: "' . $this->getAttrib('boxLabelCls') . '"';
+        }
+
+        if ($this->getAttrib('baseCls')) {
+            $content .= ', baseCls: "' . $this->getAttrib('baseCls') . '"';
+        }
+
         if ($this->getAttrib('labelWidth')) {
             $content .= ', labelWidth: ' .  $this->getAttrib('labelWidth');
         }
-        
+
         if ($this->getAttrib('disabled') && $this->getAttrib('disabled') === true) {
             $content .= ", disabled: true";
         }
