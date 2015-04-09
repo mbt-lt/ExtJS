@@ -44,6 +44,10 @@ class ExtJS_Form_Element_Display extends Zend_Form_Element_Text
             $config .= ", width: " . (int)$this->getAttrib('width');
         }
 
+        if ($this->getAttrib('hidden') && $this->getAttrib('hidden') === true) {
+            $config .= ", hidden: true";
+        }
+
         $config .= "}";
 
         return $config;
