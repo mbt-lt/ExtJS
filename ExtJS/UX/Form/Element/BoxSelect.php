@@ -74,7 +74,7 @@ class ExtJS_UX_Form_Element_BoxSelect extends Zend_Form_Element
             valueField: 'id',
             store: " . $this->getStore() . ",
             queryMode: 'remote',
-            value: '" . $value . "',
+            value: " . $value . ",
             encodeSubmitValue: true,
             readOnly: " . ($this->getAttrib('readOnly') ? 'true' : 'false') . ",
             minChars: 3
